@@ -15,7 +15,7 @@ $CFG->dbpass    = $DATABASE_URL["pass"];
 $CFG->prefix    = 'mdl_';
 $CFG->dboptions = array (
   'dbpersist' => 0,
-  'dbport' => $DATABASE_URL["port"];,
+  'dbport' => $DATABASE_URL["port"],
   'dbsocket' => '',
 );
 
