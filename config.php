@@ -4,16 +4,18 @@ unset($CFG);
 global $CFG;
 $CFG = new stdClass();
 
+$DATABASE_URL = parse_url(getenv("DATABASE_URL"));
+
 $CFG->dbtype    = 'pgsql';
 $CFG->dblibrary = 'native';
-$CFG->dbhost    = getenv('DATABASE_HOST');
-$CFG->dbname    = getenv('DATABASE_NAME');
-$CFG->dbuser    = getenv('DATABASE_USER');
-$CFG->dbpass    = getenv('DATABASE_PASSWORD');
+$CFG->dbhost    = $DATABASE_URL["host"];
+$CFG->dbname    = ltrim($DATABASE_URL["path"], "/");
+$CFG->dbuser    = $DATABASE_URL["user"];
+$CFG->dbpass    = $DATABASE_URL["pass"];
 $CFG->prefix    = 'mdl_';
 $CFG->dboptions = array (
   'dbpersist' => 0,
-  'dbport' => getenv('DATABASE_PORT'),
+  'dbport' => $DATABASE_URL["port"];,
   'dbsocket' => '',
 );
 
